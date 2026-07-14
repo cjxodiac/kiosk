@@ -1,0 +1,96 @@
+:root {
+  --base: clamp(16px, calc(1.1vw + 1.1vh), 30px);
+  --color-primary: #D1E000;
+  --color-primary-dark: #A8B400;
+  --color-brown: #3E2723;
+  --color-brown-light: #6D4C41;
+  --color-easy: #FF7A00;
+  --color-bg: #ffffff;
+  --color-fg: #1a1a1a;
+}
+
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  font-family: 'Pretendard', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+}
+
+html { font-size: var(--base); }
+
+html, body, #root {
+  width: 100vw; height: 100vh; overflow: hidden;
+  user-select: none; -webkit-user-select: none;
+  touch-action: manipulation; overscroll-behavior: none;
+}
+
+body { background: var(--color-bg); color: var(--color-fg); }
+
+button {
+  cursor: pointer; border: none; background: none;
+  font-family: inherit; font-size: inherit;
+}
+
+@media (orientation: portrait) {
+  :root { --base: clamp(16px, calc(1.4vw + 1vh), 32px); }
+}
+@media (orientation: landscape) {
+  :root { --base: clamp(14px, calc(0.7vw + 0.8vh), 22px); }
+}
+@media (max-width: 600px) {
+  :root { --base: 14px; }
+}
+
+/* 스크롤 가능한 영역에 항상 스크롤바 표시 */
+
+/* 전체 스크롤바 너비 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/* 스크롤바 트랙 (배경) */
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+}
+
+/* 스크롤바 핸들 */
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  min-height: 40px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* 고대비 모드일 때 */
+.high-contrast ::-webkit-scrollbar-track {
+  background: rgba(255, 235, 59, 0.1);
+}
+
+.high-contrast ::-webkit-scrollbar-thumb {
+  background: rgba(255, 235, 59, 0.6);
+}
+
+/* 스크롤 가능한 영역 표시 - 오버플로우가 있을 때 항상 스크롤바 노출 */
+.scrollable {
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
+/* 팝업 내부 스크롤 영역 */
+.modal-scroll {
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  /* 스크롤 가능함을 보여주는 그림자 힌트 */
+  background:
+    linear-gradient(white 30%, rgba(255,255,255,0)) top / 100% 20px,
+    linear-gradient(rgba(255,255,255,0), white 70%) bottom / 100% 20px,
+    radial-gradient(farthest-side at 50% 0, rgba(0,0,0,0.12), rgba(0,0,0,0)) top / 100% 8px,
+    radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,0.12), rgba(0,0,0,0)) bottom / 100% 8px;
+  background-repeat: no-repeat;
+  background-attachment: local, local, scroll, scroll;
+}
